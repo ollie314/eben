@@ -16,7 +16,7 @@ var SimApp = {
 	
 	DEBUG_MODE : true,
 	
-	cb : window.plugins.childBrowser,
+	cb : null,
 	
 	events : {
 		FB_APPLICATION_INITIALIZING 	: 'facebookappinitialization',
@@ -71,6 +71,9 @@ var SimApp = {
 	 */
 	init : function() {
 		SimApp.notificationContainer = $( SimApp.notificationSelector ).toast();
+		if(typeof window.plugins != 'undefined' ) {
+			SimApp.cb = window.plugins.childBrowser;
+		}
 		SimApp.initialized = true;
 	},
 	
@@ -95,5 +98,5 @@ var SimApp = {
 
 // arm notification process.
 $( document ).bind( 'pageinit', function( evt ) {
-	Simapp.init();
+	SimApp.init();
 } );
