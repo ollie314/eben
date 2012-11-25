@@ -7,8 +7,11 @@ function onDeviceReady() {
 	$.mobile.showPageLoadingMsg();
 	$( '#notificationContainer' ).toast();
 	
+	SimFacebook.init();
+	
 	$( "#loginButton" ).click( function( mouseEvent ) {
 		// test simapp & social functions
+		SimFacebook.postMessage( "This is a simple test" );
 	} );
 };
 	

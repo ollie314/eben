@@ -38,6 +38,22 @@ var SimFacebook = {
 		return SimFacebook.userStatus.info;
 	},
 	
+	init : function() {
+		$( document ).bind( SimApp.events.FB_AUTHENTICATION_SUCCESS, function() {
+			SimFacebook.status.connected = true;
+			SimFacebook.status.authorized = true;
+		} );
+		
+		$( document ).bind( SimApp.events.FB_USER_NOT_AUTHORIZED, function() {
+			SimFacebook.status.connected = false;
+			SimFacebook.status.authorized = true;
+		} );
+		
+		$( document ).bind( SimApp.events.FB_USER_NOT_CONNECTED, function() {
+			SimFacebook.status.connected = false;
+			SimFacebook.status.authorized = false;
+		} );
+	},
 	/**
 	 * Post effecively a message on the facebook user's wall.
 	 * To listen login response, subscribe to events decribe below :
