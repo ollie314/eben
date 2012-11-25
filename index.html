@@ -9,8 +9,49 @@
 	<link rel="stylesheet" type="text/css" href="./css/jquery-mobile.css">
 	<link rel="stylesheet" type="text/css" href="./css/jquery.mobile.toast.css">
 	<link href="./css/my.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+	<script type="text/javascript" charset="utf-8" src="childbrowser.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery_mobile.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery.mobile.toast.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/social/simapp.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/social/simplefb.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/utils/date.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/utils/simnet.logger.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/application.js"></script>
 </head>
 <body>
+<script>
+window.fbAsyncInit = function() {
+  // param to initialize the fb api
+  FB.init( {
+    appId      : SimFacebook.API_ID,
+    channelUrl : SimFacebook.CHAN_URL,
+    status     : true,
+    cookie     : true,
+    xfbml      : false
+  } );
+  
+  SimFacebook.fetchLoginStatus();
+  $( document ).trigger( SimApp.events.FB_APPLICATION_INITIALIZING );
+
+}; /* fbAsyncInit */
+
+// load the facebook api and run it.
+( function( doc, dbg ){
+  var js = doc.createElement( 'script' ),
+    id = 'facebook-jssdk', 
+    ref = doc.getElementsByTagName( 'script' )[0];
+  if( doc.getElementById( id ) ) {
+    return;
+  } 
+  js.id = id;
+  js.async = true;
+  js.src = "//connect.facebook.net/en_US/all" + ( dbg ? "/debug" : "" ) + ".js";
+  ref.parentNode.insertBefore( js, ref );
+ }( document, SimApp.DEBUG_MODE ) );
+</script>
+
 	<div data-role="page" id="one">
 		<div id="pageHeader" data-role="header">
 			<h1>Multi-page</h1>
@@ -80,14 +121,4 @@
 	
 	<div id="notificationContainer" data-role="toast"></div>
 </body>
-<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-<script type="text/javascript" charset="utf-8" src="childbrowser.js"></script>
-<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery_mobile.js"></script>
-<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery.mobile.toast.js"></script>
-<script type="text/javascript" charset="utf-8" src="./assets/js/social/simapp.js"></script>
-<script type="text/javascript" charset="utf-8" src="./assets/js/social/simplefb.js"></script>
-<script type="text/javascript" charset="utf-8" src="./assets/js/utils/date.js"></script>
-<script type="text/javascript" charset="utf-8" src="./assets/js/utils/simnet.logger.js"></script>
-<script type="text/javascript" charset="utf-8" src="./assets/js/application.js"></script>
 </html>

@@ -233,35 +233,6 @@ var SimFacebook = {
 /*******************************************************************************************/
 /*********************************** CORE OF THE UNIT **************************************/
 /*******************************************************************************************/
-window.fbAsyncInit = function() {
-  // param to initialize the fb api
-  FB.init( {
-    appId      : SimFacebook.API_ID,
-    channelUrl : SimFacebook.CHAN_URL,
-    status     : true,
-    cookie     : true,
-    xfbml      : false
-  } );
-  
-  SimFacebook.fetchLoginStatus();
-  $( document ).trigger( SimApp.events.FB_APPLICATION_INITIALIZING );
-
-}; /* fbAsyncInit */
-
-// load the facebook api and run it.
-( function( doc, dbg ){
-  var js = doc.createElement( 'script' ),
-    id = 'facebook-jssdk', 
-    ref = doc.getElementsByTagName( 'script' )[0];
-  if( doc.getElementById( id ) ) {
-    return;
-  } 
-  js.id = id;
-  js.async = true;
-  js.src = "//connect.facebook.net/en_US/all" + ( dbg ? "/debug" : "" ) + ".js";
-  ref.parentNode.insertBefore( js, ref );
- }( document, SimApp.DEBUG_MODE ) );
-
 $( document ).bind( 'pageinit', function() {
 	$( "#fbAction" ).click( function( mouseEvent ) {
 		SimFacebook.postMessage( "This is a simple test from the application ..." );
