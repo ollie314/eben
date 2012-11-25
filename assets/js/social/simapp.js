@@ -71,7 +71,8 @@ var SimApp = {
 	 */
 	init : function() {
 		SimApp.notificationContainer = $( SimApp.notificationSelector ).toast();
-		if(typeof window.plugins != 'undefined' ) {
+		if( typeof window.plugins != 'undefined' && 
+				typeof window.plugins.childBrowser == 'function' ) {
 			SimApp.cb = window.plugins.childBrowser;
 		}
 		SimApp.initialized = true;
@@ -87,7 +88,7 @@ var SimApp = {
 	 */
 	notify : function( message ) {
 		 SimApp.notificationContainer.html( message )
-			.toast();
+			.toast( 'show' );
 		return true;
 	}
 };
