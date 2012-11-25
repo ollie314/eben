@@ -99,7 +99,7 @@ var SimFacebook = {
 				var browser = window.plugins.childBrowser, // childbrowser reference
 					url = response.url;
 
-				browser.showWebPage( url , { showLocationBar: false } );
+				browser.showWebPage( url , { showLocationBar: true } );
 				browser.onLocationChange = function( location ) {
 					// check if the location is the service url, if then, read response to check out facebook information.
 					// all information works at the cookie level, right here, we just wanna be sure that the request has been successfully completed.
