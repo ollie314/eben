@@ -27,15 +27,15 @@ var SimFacebook = {
 	},
 	
 	isConnected : function() {
-		return SimFacebook.userStatus.connected;
+		return SimFacebook.status.connected;
 	},
 	
 	isAuthorized : function() {
-		return SimFacebook.userStatus.authorized;
+		return SimFacebook.status.authorized;
 	},
 	
 	getInfo : function() {
-		return SimFacebook.userStatus.info;
+		return SimFacebook.status.info;
 	},
 	
 	init : function() {
@@ -199,9 +199,9 @@ var SimFacebook = {
 	postMessage : function( message, options ) {
 	
 		if( !( SimFacebook.isConnected() && SimFacebook.isAuthorized() ) ) {
-			doHandshake( message, options );
+			SimFacebook.doHandshake( message, options );
 		} else {
-			doPost( message, options );
+			SimFacebook.doPost( message, options );
 		}
 	},
 	
