@@ -71,11 +71,16 @@ var SimApp = {
 	 */
 	init : function() {
 		SimApp.notificationContainer = $( SimApp.notificationSelector ).toast();
+		SimApp.initialized = true;
+	},
+	
+	showWebPage : function( page, options) {
+		options = options || {};
 		if( typeof window.plugins != 'undefined' && 
 				typeof window.plugins.childBrowser == 'function' ) {
 			SimApp.cb = window.plugins.childBrowser;
 		}
-		SimApp.initialized = true;
+		SimApp.cb.showWebPage( page, options );
 	},
 	
 	/**
