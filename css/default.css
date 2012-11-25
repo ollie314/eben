@@ -1,0 +1,367 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'BenchNine';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./fonts/BenchNine.eot);
+  src: local('BenchNine Regular'), local('BenchNine-Regular'), url(./fonts/BenchNine.eot) format('embedded-opentype'), url(./fonts/BenchNine.woff) format('woff');
+}
+
+
+.banHeader {
+	background-image: url(../img/layout/base/fondHeader.jpg);
+	background-repeat: repeat-x;
+	height:37px;
+}
+
+.banFooter {
+	background-image: url(../img/layout/base/fondFooter.png);
+	background-repeat: repeat-x;
+    height : 68px;
+	width:100%;
+}
+
+.logo {
+	background-image: url(../img/layout/base/logo.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 32px;
+	width: 121px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+
+#social
+{
+	position:absolute;
+	bottom:80px;
+	z-index:200;
+}
+
+#titleNews p
+{
+	font-stretch:extra-condensed;
+	font-family:BenchNine,Arial;
+	color:red;
+	font-size:20px;
+	margin-left:20px;
+	margin-right:20px;
+	margin-bottom:10px;
+}
+
+#titleRm p
+{
+	font-stretch:extra-condensed;
+	font-family:BenchNine,Arial;
+	color:red;
+	font-size:20px;
+	margin-left:20px;
+	margin-right:20px;
+	margin-bottom:10px;
+}
+
+
+
+#descriptionNews p
+{
+	font-stretch:extra-condensed;
+	font-family:Arial;
+	color:black;
+	font-size:12px;
+	margin-top:10px;
+	margin-left:20px;
+	margin-right:20px;
+	min-height:100%
+}
+
+#titleRestaurant p
+{
+	font-stretch:extra-condensed;
+	font-family:BenchNine,Arial;
+	color:red;
+	font-size:20px;
+	margin-left:20px;
+	margin-right:20px;
+	margin-bottom:10px;
+}
+
+#titleRestaurantNousContacter p
+{
+	font-stretch:extra-condensed;
+	font-family:BenchNine,Arial;
+	color:red;
+	font-size:20px;
+	margin-left:20px;
+	margin-right:20px;
+	margin-bottom:10px;
+}
+
+#descriptionRestaurant p
+{
+	font-stretch:extra-condensed;
+	font-family:Arial;
+	color:black;
+	font-size:12px;
+	margin-top:10px;
+	margin-left:20px;
+	margin-right:20px;
+	min-height:100%
+}
+
+
+#contactRestaurant span{
+	font-stretch:extra-condensed;
+	font-family:Arial;
+	color:black;
+	font-size:12px;
+	margin-top:10px;
+	margin-left:20px;
+	margin-right:20px;
+	min-height:100%
+}
+
+#titleManifestation p
+{
+	font-stretch:extra-condensed;
+	font-family:BenchNine,Arial;
+	color:red;
+	font-size:20px;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+#dateManifestation p
+{
+	font-stretch:extra-condensed;
+	font-family:BenchNine,Arial;
+	color:black;
+	font-size:15px;
+	margin-left:20px;
+	margin-right:20px;
+	margin-bottom:10px;
+}
+
+#descriptionManifestation p
+{
+	font-stretch:extra-condensed;
+	font-family:Arial;
+	color:black;
+	font-size:12px;
+	margin-top:10px;
+	margin-left:20px;
+	margin-right:20px;
+	min-height:100%
+}
+
+.containerDescriptionNews{
+	width:100%;
+}
+
+
+#GPSInfo{
+	height:28px;
+}
+#GPSValues{
+	height:161px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+#Social{
+	height:37px;
+}
+#LocateFriends{
+	height:100%;
+	min-height:100%;
+}
+.titleGPS {
+	font-family:BenchNine;
+	color:red;
+	font-size:20px;
+	width:100px;
+	float:left;
+	padding-left:20px;
+}
+
+.titleGPSFriends {
+	font-family:BenchNine;
+	color:red;
+	font-size:20px;
+	width:150px;
+	float:left;
+	padding-left:20px;
+}
+
+.titleFriendsFinder {
+	font-family:BenchNine;
+	color:red;
+	font-size:20px;
+	float:left;
+	padding-left:20px;
+	
+}
+
+.signalGPS
+{
+	font-family: BenchNine;
+	position: absolute;
+	color: black;
+	width: 136px;
+	font-size: 20px;
+	text-align: right;
+	right: 20px;
+}
+.circleGPSRed
+{
+	margin-right:20px;
+}
+
+.timeGPS
+{
+	text-align:left;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:18px;
+	color:#999;
+	padding-left:20px;
+	background-color:rgba(255,255,255,0.5);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity:.5;
+}
+
+.distanceGPS
+{
+	padding-right:20px;
+	background-color:rgba(255,255,255,0.5);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity:.5;
+}
+
+.speedGPS
+{
+	text-align:left;
+	vertical-align:top;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:18px;
+	color:#999;
+	padding-left:20px;
+	background-color:rgba(255,255,255,0.5);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity:.5;
+}
+
+.altitudeGPS
+{
+	text-align:right;
+	vertical-align:top;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:18px;
+	color:#999;
+	padding-right:20px;
+	background-color:rgba(255,255,255,0.5);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity:.5;
+}
+#GPS_Time
+{
+	font-family:BenchNine;
+	font-size:35px;
+	width:150px;
+	text-align:center;
+	color:black;
+}
+#GPS_Distance
+{
+	font-family: BenchNine;
+	font-size: 35px;
+	width: 150px;
+	text-align: center;
+	color: black;
+}
+
+#GPS_Distance_Titre
+{
+	text-align: right;
+	vertical-align: top;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 18px;
+	color: #999;
+	width: 109px;
+	height: 26px;
+}
+
+#GPS_Time_Titre
+{
+	text-align: left;
+	vertical-align: top;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 18px;
+	color: #999;
+	width: 109px;
+	height: 26px;
+}
+
+#GPS_Vitesse_Titre
+{
+	text-align: left;
+	vertical-align: top;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 18px;
+	color: #999;
+	width: 109px;
+	height: 26px;
+}
+
+#GPS_Denivele_Titre
+{
+	text-align: right;
+	vertical-align: top;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 18px;
+	color: #999;
+	width: 109px;
+	height: 26px;
+}
+
+
+.btnFooter
+{
+	padding-top:2px;	
+	padding-bottom:2px;	
+	padding-left:8px;	
+	padding-right:8px;	
+}
+
+
+#GPS_Vitesse
+{
+	font-family:BenchNine;
+	font-size:35px;
+	width:150px;
+	text-align:center;
+	color:black;
+}
+#GPS_Denivele
+{
+	font-family: BenchNine;
+	font-size: 35px;
+	width: 150px;
+	text-align: center;
+	color: black;
+}
+#startRecord
+{
+	position:absolute;
+	left:50%;
+	top:90px;
+	background:url(../img/gps/start.png);
+	margin-left:-26px;
+	width:53px;
+	height:53px;
+	z-index:180;
+}

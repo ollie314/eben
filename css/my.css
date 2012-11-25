@@ -1,0 +1,359 @@
+.text-align-center {
+  text-align: center;
+}
+.text-align-right {
+  text-align: right;
+}
+
+#wrapper {
+	position:absolute; z-index:1;
+	top:37px; bottom:68px; left:0;
+	width:100%;
+	overflow:auto;
+}
+
+
+.installations .ui-li-desc {
+	font-weight: 700;
+	padding: 14px 0 0;
+	white-space: normal;
+	font-size: 10px;
+	margin-left:20px;
+}
+
+
+.installations h1 {
+	font-size: 18px;
+	padding-top:10px;
+	padding-left:20px;
+	font-family:BenchNine,Arial;
+	color:#02388B;
+}
+
+.ui-field-contain .ui-btn.ui-submit {
+	width:65px;
+	font-size:20px;
+	background-color:red;
+	color:white;
+	font-family:BenchNine,Arial;
+	font-weight:normal;
+	text-decoration:none;
+	margin-left:10px;
+	border:#000 1px solid;
+}
+
+input.ui-input-text, textarea.ui-input-text { background-image: none; padding: .4em; font-size: 12px; display: block; width: 120px; }
+
+.myBtn {
+	width:100px;
+	font-size:14px;
+	background-color:red;
+	color:white;
+	font-family:BenchNine,Arial;
+	font-weight:normal;
+	text-decoration:none;
+	margin-left:10px;
+	border:#000 1px solid;
+}
+
+
+.ui-btn-inner {
+font-size: 18px;
+display: block;
+position: relative;
+overflow: hidden;
+white-space: nowrap;
+zoom: 1;
+}
+
+
+.title {
+display: block;
+font-size: 1.5em;
+line-height: 1.3;
+width: 100%;
+}
+.from {
+	display: block;
+	font-size: 10px;
+	line-height: 1.3;
+	width: 100%;
+}
+.ui-li-message {
+    padding-top:10px;
+    white-space: normal;
+}
+
+#messageBox{
+	position:absolute;
+	top:50px;
+	left:0px;
+}
+
+
+.imgContainer {
+	background-color:transparent;
+	background-repeat:no-repeat;
+	-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);  
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.presentationList
+{
+	min-height : 100%;
+    height     : 100%;
+    margin     : 0;
+    padding    : 0;
+}
+
+.presentationDetails
+{
+	min-height : 100%;
+    height     : 100%;
+    margin     : 0;
+    padding    : 0;
+}
+
+.presentationList .ui-content #menuHome
+{
+	min-height : 100%;
+    height     : 100%;
+    margin     : 0;
+    padding    : 0;
+}
+
+.presentationDetails .ui-content #menuNews
+{
+	min-height : 100%;
+    height     : 100%;
+    margin     : 0;
+    padding    : 0;
+}
+
+
+
+.presentationList li.ui-btn-up-s div div, .presentationList li.ui-btn-hover-s div div {
+position: static;
+}
+
+.presentationList .ui-li-desc {
+	font-weight: 700;
+	padding: 14px 0 0;
+	white-space: normal;
+	font-size: 10px;
+}
+
+
+
+
+
+.presentationDetails li.ui-btn-up-s div div, .presentationDetails li.ui-btn-hover-s div div {
+position: static;
+}
+
+.presentationDetails .ui-li-desc {
+	font-weight: 700;
+	padding: 14px 0 0;
+	white-space: normal;
+	font-size: 10px;
+}
+
+/** CSS for non-standard jQuery Mobile styles or Codiqa components **/
+.split-wrapper {
+  width: 100%;
+  min-height: 200px;
+  clear: both;
+}
+@media all and (min-width: 650px) {
+  .content-secondary {
+    text-align: left;
+    float: left;
+    width: 45%;
+    background: none;
+    padding: 1.5em 6% 3em 0;
+    margin: 0;
+  }
+  .content-secondary {
+    background: none;
+    border-top: none;
+  }
+  .content-primary {
+    width: 45%;
+    float: right;
+    margin-right: 1%;
+    padding-right: 1%;
+  }
+  .content-primary ul:first-child {
+    margin-top: 0;
+  }
+  .content-secondary ul.ui-listview, .content-secondary ul.ui-listview-inset {
+    margin: 0;
+  }
+  .content-secondary ul.ui-listview .ui-li-divider, .content-secondary ul.ui-listview .ui-li {
+    border-radius: 0px;
+  }
+  .content-secondary ul.ui-listview .ui-li {
+    border-left: 0;
+    border-right: 0;
+  }
+  .content-secondary h2 {
+    position: absolute;
+    left: -9999px;
+  }
+  .content-secondary .ui-li-divider {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  .content-secondary {
+    margin: 0;
+    padding: 0;
+  }
+  
+}
+@media all and (min-width: 750px){
+  .content-secondary {
+    width: 34%;
+  }
+  .content-primary {
+    width: 60%;
+    padding-right: 1%;
+  }	
+}
+
+@media all and (min-width: 1200px){
+  .content-secondary {
+    width: 30%;
+    padding-right:6%;
+    margin: 0px 0 20px 5%;
+  }
+  .content-secondary ul {
+    margin: 0;
+  }
+  .content-secondary {
+    margin: 0;
+    padding: 0;
+  }
+  .content-primary {
+    width: 50%;
+    margin-right: 5%;
+    padding-right: 3%;
+  }
+  .content-primary {
+    width: 60%;
+  }
+}
+
+
+
+
+
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,input,legend,table,caption,tbody,tfoot,thead,tr,th,td{
+	border: 0;
+	font-family: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline
+}body{font-size:75%;line-height:1.5}
+html{height:100%;}
+a,a:hover,a:active{text-decoration:none}
+.presentationMeta span a.ui-link{color:#07a}
+.ui-shadow{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}
+.presentationSharing .ui-block-b .ui-btn span.ui-btn-inner{height:37px;width:37px}
+.ui-body-s{border:1px solid #bbb;color:#222;text-shadow:none;background-image:-moz-linear-gradient(top,#eee,#ddd);background-image:-o-linear-gradient(top,#eee,#ddd);background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#eee),color-stop(1,#ddd));filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee',EndColorStr='#dddddd');-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#dddddd')";background-color:#eee}
+.ui-btn-up-s,.menuBtn .ui-btn-hover-s,.menuBtn .ui-btn-down-s,.menuBtn .ui-btn-active,.pagination .ui-btn-hover-s,.pagination .ui-btn-down-s,.pagination .ui-btn-active-s,.mobileMenu .ui-btn-hover-s,.mobileMenu .ui-btn-down-s,.mobileMenu .ui-btn-active-s{border:1px solid #bbb;background:#fff;color:#222;font-weight:700;text-shadow:none;background-image:-o-linear-gradient(top,#fefefe,#eee);background-image:-moz-linear-gradient(top,#fefefe,#eee);background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#fdfdfd),color-stop(1,#eee));filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#fefefe',EndColorStr='#eeeeee');-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#fefefe', EndColorStr='#eeeeee')"}
+.ui-btn-hover-s,.ui-btn-down-s,.ui-btn-active-s{background:#555;border:1px solid #222;color:#eee;font-weight:700;text-shadow:none}
+.ui-body-s .ui-link,.ui-body-s .ui-link-inherit{color:#555;font-weight:700;text-shadow:none}
+.ui-btn-hover-s a.ui-link-inherit,.ui-btn-hover-s a.ui-link-inherit:hover,.ui-btn-hover-s a.ui-link-inherit:focus,.ui-btn-hover-s a.ui-link-inherit:active,.ui-btn-down-s a.ui-link-inherit,.ui-btn-down-s a.ui-link-inherit:hover,.ui-btn-down-s a.ui-link-inherit:focus,.ui-btn-down-s a.ui-link-inherit:active{color:#eee;text-shadow:none}
+.ui-btn,.footer .ui-btn{margin-right:12px}
+.ui-btn{background:0;border-radius:0;border-width:0;margin-right:0;padding:0 5px}
+.ui-btn-right{right:5px;top:0}
+.ui-btn-inner{padding:4px}
+.ui-content .presentationList{margin:0 auto}
+.presentationList .ui-li{border-width:0 0 1px;height:65px}
+.presentationList li.ui-btn-up-s div div,.presentationList li.ui-btn-hover-s div div{position:static}
+.presentationList .ui-li .ui-btn-inner{border:0;padding:0 8px 0 100px}
+.presentationList a .imgContainer{border:1px solid #ddd;left:12px;padding:1px;position:absolute;top:12px}
+.presentationList a:hover .imgContainer,.presentationList a:focus .imgContainer,.presentationList a:active .imgContainer{border:1px solid #777}
+.presentationList a .imgContainer,.presentationList a .imgContainer img{
+	height: 40px;
+	width: 70px
+}
+.presentationList a .imgContainer .privateIcon{background-color:#555;background-position:-8px -1517px;display:block;height:28px;opacity:.75;position:absolute;width:24px;z-index:100}
+
+#Home {
+    position:relative;
+    z-index:1;
+    width:100%;	
+    overflow:hidden;
+}
+
+.myScrollbarV {
+	position:absolute;
+	z-index:100;
+	width:8px;bottom:7px;top:2px;right:1px
+}
+
+.myScrollbarV > div {
+	position:absolute;
+	z-index:100;
+	width:100%;
+
+	/* The following is probably what you want to customize */
+  background:-webkit-gradient(linear, 0 0, 100% 0, from(#f00), to(#900));
+  background-image:-moz-linear-gradient(top, #f00, #900);
+  background-image:-o-linear-gradient(top, #f00, #900);
+  border:1px solid #900;
+  -webkit-background-clip:padding-box;
+  -moz-background-clip:padding-box;
+  -o-background-clip:padding-box;
+  background-clip:padding-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  box-sizing:border-box;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  -o-border-radius:4px;
+  border-radius:4px;
+  -webkit-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.5);
+  -moz-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.5);
+  -o-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.5);
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,0.5);
+}
+
+.ui-content .presentationDetails{margin:0 auto}
+.presentationDetails .ui-li{border-width:0 0 1px;height:110px}
+.presentationDetails li.ui-btn-up-s div div,.presentationDetails li.ui-btn-hover-s div div{position:static}
+.presentationDetails .ui-li .ui-btn-inner{border:0;padding:0 30px 0 100px}
+.presentationDetails a .imgContainer{border:1px solid #ddd;left:12px;padding:1px;position:absolute;top:12px}
+.presentationDetails a:hover .imgContainer,.presentationList a:focus .imgContainer,.presentationDetails a:active 
+.presentationDetails a .imgContainer,.presentationDetails a .imgContainer img{
+	height: 40px;
+	width: 70px
+}
+.presentationDetails a .imgContainer .privateIcon{background-color:#555;background-position:-8px -1517px;display:block;height:28px;opacity:.75;position:absolute;width:24px;z-index:100}
+
+.presentationList .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
+	padding:0px;
+}
+.presentationDetails .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
+	padding:0px;
+}
+
+.ui-content .presentationWebcams{margin:0 auto}
+.presentationWebcams li.ui-btn-up-s div div,.presentationDetails li.ui-btn-hover-s div div{position:static}
+.presentationWebcams .ui-li .ui-btn-inner{border:0;padding:0 30px 0 100px}
+.presentationWebcams a .imgContainer{border:1px solid #ddd;left:12px;padding:1px;position:absolute;top:3px}
+.presentationWebcams a:hover .imgContainer,.presentationWebcams a:focus .imgContainer,.presentationWebcams a:active 
+.presentationWebcams a .imgContainer,.presentationWebcams a .imgContainer img{
+	height: 40px;
+	width: 70px
+}
+
+.presentationWebcams .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
+	padding:10px;
+}
+.presentationWebcams .ui-li{border-width:0 0 1px;height:55px}
