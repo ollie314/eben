@@ -96,7 +96,7 @@ var SimFacebook = {
 	 */
 	doHandshake : function( message, options ) {
 		var successHandler = function( response ) {
-				var browser = SimApp.cb, // childbrowser reference
+				var browser = window.plugins.childBrowser, // childbrowser reference
 					url = response.url;
 
 				browser.showWebPage( url , { showLocationBar: false } );
