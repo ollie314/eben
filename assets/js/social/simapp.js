@@ -53,7 +53,7 @@ var SimApp = {
 	},
 	
 	messages : {
-		AUTHENTICATION_FAILURE_ALERT	: 'The authentication process failing down. Unable to post message on the media';
+		AUTHENTICATION_FAILURE_ALERT	: 'The authentication process failing down. Unable to post message on the media'
 	},
 	
 	errors : {

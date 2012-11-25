@@ -15,14 +15,14 @@
  */
 var SimFacebook = {
 	API_ID 			: "490104927689454",
-	const CHAN_URL 	: "http://iphone.simnetsa.ch/grptv/services/facebook.html",
+	CHAN_URL 		: "http://iphone.simnetsa.ch/grptv/services/facebook.html",
 	callbackurl 	: 'http://iphone.simnetsa.ch/grptv/services/fb.php',
 	serviceUrl 		: 'http://iphone.simnetsa.ch/grptv/services/fb.php',
 	domainName 		: 'http://iphone.simnetsa.ch',
 	
 	status : {
 		connected : false,
-		authorized : false
+		authorized : false,
 		info : {}
 	},
 	
@@ -150,7 +150,7 @@ var SimFacebook = {
 				// the request has been completed ...
 				return ( location.indexOf( SimFacebook.domainUrl ) >= 0 );
 			},
-			onHandshakeComplete : function() {
+			onHandshakeComplete = function() {
 				SimApp.cb.close();
 				$( document ).unbind( SimApp.events.FB_HANDSAKE_COMPLETE, onHandshakeComplete );
 			};
@@ -183,7 +183,7 @@ var SimFacebook = {
 				}
 			},
 			error : function( status, jqXHR, errorThrown ) {
-				$( document ).trigger( SimApp.events.AJAX_LOADING_ERROR, { data : { type : SimApp.errors.NETWORK_ERROR, error : errorThrown }, status : status );
+				$( document ).trigger( SimApp.events.AJAX_LOADING_ERROR, { data : { type : SimApp.errors.NETWORK_ERROR, error : errorThrown }, status : status } );
 			}
 		} );
 	},
@@ -203,7 +203,7 @@ var SimFacebook = {
 		} else {
 			doPost( message, options );
 		}
-	}
+	},
 	
 	/**
 	 * Handler for login status send as soon as the api has been loaded.
@@ -228,7 +228,6 @@ var SimFacebook = {
 	
 	login : function() {
 	}
-}
 };
 
 /*******************************************************************************************/
