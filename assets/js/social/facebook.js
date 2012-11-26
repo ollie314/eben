@@ -21,7 +21,7 @@ var Facebook = {
         authorize_url += "&scope=publish_stream,offline_access"
 
         // Open Child browser and ask for permissions
-        client_browser = ChildBrowser.install();
+        //client_browser = ChildBrowser.install();
         client_browser.onLocationChange = function(loc){
             Facebook.facebookLocChanged(loc);
         };
@@ -40,12 +40,9 @@ var Facebook = {
                 dataType: 'text',
                 type: 'POST',
                 success: function(data, status){
-
                     // We store our token in a localStorage Item called facebook_token
                     localStorage.setItem(facebook_token, data.split("=")[1]);
-
                     window.plugins.childBrowser.close();
-
                     app.init();
                 },
                 error: function(error) {
@@ -55,24 +52,18 @@ var Facebook = {
         }
     },
     share:function(url){
-
         // Create our request and open the connection
         var req = new XMLHttpRequest();
         req.open("POST", url, true);
-
-
         req.send(null);
         return req;
     },
     post:function(_fbType,params){
-
         // Our Base URL which is composed of our request type and our localStorage facebook_token
         var url = 'https://graph.facebook.com/me/'+_fbType+'?access_token='+localStorage.getItem(facebook_token);
-
         // Build our URL
         for(var key in params){
             if(key == "message"){
-
                 // We will want to escape any special characters here vs encodeURI
                 url = url+"&"+key+"="+escape(params[key]);
             }
@@ -80,9 +71,7 @@ var Facebook = {
                 url = url+"&"+key+"="+encodeURIComponent(params[key]);
             }
         }
-
         var req = Facebook.share(url);
-
         // Our success callback
         req.onload = Facebook.success();
     },
