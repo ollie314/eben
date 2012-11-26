@@ -8,7 +8,7 @@ var my_client_id = "490104927689454", // YOUR APP ID
     my_display = "touch"; // LEAVE THIS
 
 var facebook_token = "fbToken"; // OUR TOKEN KEEPER
-var client_browser = window.plugins.childBrowser;
+var client_browser = null;
 
 // FACEBOOK
 var Facebook = {
