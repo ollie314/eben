@@ -20,7 +20,7 @@ var SimApp = {
     notificationSelector : "#notificationContainer",
     notificationContainer : null,
     initialized : false,
-    cb : null, // no longer use ///
+    cb : null, // no longer use //
 
     events : {
         FB_APPLICATION_INITIALIZING 	: 'facebookappinitialization',
@@ -58,6 +58,8 @@ var SimApp = {
         AJAX_LOADING_SUCCESS 		: 'ajaxloadingsuccess',
         AJAX_LOADING_ERROR 		: 'ajaxloadingerror',
 
+        APPLICATION_INITIALILIZING	: 'applicationintializing',
+        APPLICATION_INITIALILIZED	: 'applicationinitialized',
         APPLICATION_ERROR               : 'applicationerror'
     },
 
@@ -80,6 +82,7 @@ var SimApp = {
         }
     },
 
+    // equivalent to stream type misswording here !!! sorry
     postType : {
       FACEBOOK                          : 0x1,
       TWITTER                           : 0x2,
@@ -142,18 +145,10 @@ var SimApp = {
      * @return void
      */
     init : function() {
+    	// intialize the notification container
         SimApp.notificationContainer = $( SimApp.notificationSelector ).toast();
-        if(!localStorage.getItem(facebook_token)){
-            Simnet.logger.debug( "Not already logged in, initialize the application ..." );
-            $( "#fbAction" ).attr( "data-theme", "a" ).click( function(){
-                Facebook.init();
-            } );
-        }
-        else {
-            Simnet.Logger.debug("User already logged in");
-        }
+        // mark object as initialized
         SimApp.initialized = true;
-        SimApp.fireEvent( SimApp.events.APPLICATION_INITIALILIZED );
     },
 
     /**
@@ -165,6 +160,8 @@ var SimApp = {
      * @param string page : url of the page to load
      * @param [optional]object : configuration options for the browser
      * @return void
+     * 
+     * @deprecated
      */
     showWebPage : function( page, options) {
         options = options || {};
@@ -191,7 +188,7 @@ var SimApp = {
     getStreamTypeById : function( streamId ) {
         switch( streamId ) {
             case SimApp.postType.FACEBOOK :
-                return 'feed';
+                return Facebook.constants.PUBLIC_FEED;
             default :
                 SimApp.generateError( SimApp.errors.levels.CRITICAL, "Unknown stream reference [streamId : " + streamId + "]" );
         }
@@ -206,6 +203,7 @@ var SimApp = {
      * @return object - the message formatted
      */
     formatMessageForFacebook : function( message ) {
+    	// TODO : validate the link : must be '_link' not only 'link'
         return message;
     },
 
@@ -219,7 +217,7 @@ var SimApp = {
      * @param object message : the message to send
      * @return message - the message formatted for the stream
      */
-    formatMessageForstream : function( streamId, message ) {
+    formatMessageForStream : function( streamId, message ) {
         switch( streamId ) {
             case SimApp.postType.FACEBOOK :
                 return SimApp.formatMessageForFacebook( message );
@@ -242,7 +240,7 @@ var SimApp = {
      *  <ul>
      *      <li>picture : the picture associate the message<li>
      *      <li>caption : the caption of the picture to post with the message</li>
-     *      <li>link : url of the link to associate to the picture</li>
+     *      <li>_link : url of the link to associate to the picture</li>
      *      <li>name : the name of the message</li>
      *  </ul>
      *
@@ -257,9 +255,14 @@ var SimApp = {
         message = message || "No message to post"; // message should be required ...
         options = options || {};
         medias = medias || SimApp.postType.FACEBOOK;
-        var _fbType = 'feed'; // kind of the feed to fetch
-        // When you're ready send you request off to be processed!
-        Facebook.post( _fbType, options );
+        
+        if( SimApp.shouldPostOnFacebook( medias ) ) {
+        	var streamType = SimApp.getStreamTypeById( SimApp.postType.FACEBOOK ),
+        		msg = $.extend( options, { message : message } ),
+        		_msg = SimApp.formatMessageForStream( SimApp.postType.FACEBOOK, msg );
+            Facebook.post( streamType, _msg );
+        }
+        // TODO : do the same thing with all other medias
     },
 
     /**
