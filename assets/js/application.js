@@ -55,8 +55,7 @@ var app = {
     }
 },
 createPost = function(){
-
-
+    Simnet.Logger.debug( "Creaing a fake post ...");
     // Define our message!
     var msg = "This is a test !!!";
 
@@ -78,6 +77,7 @@ createPost = function(){
 },
 onDeviceReady = function() {
     Simnet.Logger.activate();
+    Simnet.Logger.debug( "Device is now ready, proceed to application initialisation");
     $.support.cors = true;
     $.mobile.showPageLoadingMsg();
     $( '#notificationContainer' ).toast();
@@ -88,6 +88,10 @@ onDeviceReady = function() {
         // test simapp & social functions
         SimFacebook.postMessage( "This is a simple test" );
         return false;
+    } );
+
+    $( "#postButtonTest" ).click( function( mouseEvent ) {
+        createPost();
     } );
 
     $( "#fbAction" ).click( function( mouseEvent ) {
