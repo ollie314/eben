@@ -149,7 +149,9 @@ var Facebook = {
                     Simnet.Logger.debug( "Access token will be [" + token + "]");
                     // We store our token in a localStorage Item called facebook_token
                     localStorage.setItem( facebook_token, token );
+                    Simnet.Logger.debug( "Toen persisted");
                     SimApp.fireEvent( SimApp.events.FB_AUTHENTICATION_SUCCESS );
+                    Simnet.Logger.debug( "Ajax call completed, authentication successfully completed");
                 },
                 error: function(error) {
                     Simnet.Logger.debug( "Error occurred during the access token request ...");
@@ -209,13 +211,13 @@ var Facebook = {
     	if( !Facebook.status.connected ) {
     		Simnet.Logger.debug( "User is not connected, do the handshake right now");
     		// prepare connection success behavior ...
-    		$( document ).bind( SimApp.events.FB_HANDSHAKE_COMPLETED, Facebook.post );
+    		$( document ).bind( SimApp.events.FB_AUTHENTICATION_SUCCESS, Facebook.post );
     		// ... and do connection ...
     		Facebook.connect();
     		return false;
     	}
     	// be sure the post will no longer grab the facebook handshake completed event
-    	$( document ).unbind( SimApp.events.FB_HANDSHAKE_COMPLETED, Facebook.post );
+    	$( document ).unbind( SimApp.events.FB_AUTHENTICATION_SUCCESS, Facebook.post );
         Simnet.Logger.debug( "User is connected, post the messsage right now");
         // Our Base URL which is composed of our request type and our localStorage facebook_token
         var url = 'https://graph.facebook.com/me/' + _fbType + '?access_token=' + localStorage.getItem( facebook_token );
