@@ -8,7 +8,7 @@ var my_client_id = "490104927689454", // YOUR APP ID
     my_display = "touch"; // LEAVE THIS
 
 var facebook_token = "fbToken"; // OUR TOKEN KEEPER
-var client_browser;
+var client_browser = window.plugins.childBrowser;
 
 // FACEBOOK
 var Facebook = {
@@ -28,19 +28,28 @@ var Facebook = {
         var authorize_url = Facebook.get_authorize_url();
         // Open Child browser and ask for permissions
         //client_browser = ChildBrowser.install();
-        window.plugins.childBrowser.onLocationChange = function(loc){
+        if( null == client_browser ) {
+            client_browser = window.plugins.childBrowser;
+        }
+        client_browser.onLocationChange = function(loc){
             Facebook.facebookLocChanged(loc);
         };
-        window.plugins.childBrowser.showWebPage(authorize_url);
+        client_browser.showWebPage(authorize_url);
     },
     facebookLocChanged:function(loc){
         Simnet.Logger.debug( "ChildBorwser location change detected [url:" + loc + "]");
         // When the childBrowser window changes locations we check to see if that page is our success page.
         if (loc.indexOf("http://www.facebook.com/connect/login_success.html") > -1) {
-            Simnet.Logger.debug( "Succes url detected [url:" + loc + "] - Requesting an access token");
-            var fbCode = loc.match(/code=(.*)$/)[1]
+            Simnet.Logger.debug( "Success url detected [url:" + loc + "] - Requesting an access token");
+            var fbCode = loc.match(/code=(.*)$/)[1],
+                url = 'https://graph.facebook.com/oauth/access_token?client_id=' + my_client_id +
+                        '&client_secret=' + my_secret +
+                        '&code=' + fbCode +
+                        '&redirect_uri=http://www.facebook.com/connect/login_success.html';
+            Simnet.Logger.debug( "Decrypted fbCode is [" + fbCode + "]");
+            Simnet.Logger.debug( "Sending the request for a token using url [" + url + "]");
             $.ajax({
-                url:'https://graph.facebook.com/oauth/access_token?client_id='+my_client_id+'&client_secret='+my_secret+'&code='+fbCode+'&redirect_uri=http://www.facebook.com/connect/login_success.html',
+                url:url,
                 data: {},
                 dataType: 'text',
                 type: 'POST',
@@ -48,11 +57,12 @@ var Facebook = {
                     Simnet.Logger.debug( "Access token successfully grabbed");
                     // We store our token in a localStorage Item called facebook_token
                     localStorage.setItem(facebook_token, data.split("=")[1]);
-                    window.plugins.childBrowser.close();
                     app.init();
                 },
                 error: function(error) {
                     Simnet.Logger.debug( "Error occurred during the access token request ...");
+                },
+                complete : function() {
                     window.plugins.childBrowser.close();
                 }
             });
