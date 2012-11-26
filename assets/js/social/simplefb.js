@@ -14,9 +14,9 @@
  * @copyright Simnet S.A.
  */
 var SimFacebook = {
-    API_ID 			: "490104927689454",
+    API_ID 		: "490104927689454",
     CHAN_URL 		: "http://iphone.simnetsa.ch/grptv/services/facebook.html",
-    callbackurl             : 'http://iphone.simnetsa.ch/grptv/services/fb.php',
+    callbackurl         : 'http://iphone.simnetsa.ch/grptv/services/fb.php',
     serviceUrl 		: 'http://iphone.simnetsa.ch/grptv/services/fb.php',
     domainName 		: 'http://iphone.simnetsa.ch',
 
@@ -62,6 +62,7 @@ var SimFacebook = {
             window.plugins.childBrowser.close();
         } );
     },
+    
     /**
 	 * Post effecively a message on the facebook user's wall.
 	 * To listen login response, subscribe to events decribe below :

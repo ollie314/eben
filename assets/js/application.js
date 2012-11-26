@@ -1,59 +1,81 @@
-/**
+/*-------------------------------------------------------------------------
+ * Facebook function definition
  *
+ * DEPENDENCIES
+ *      - date.js
+ *      - simnet.logger.js
+ * 	- simapp.js
+ * 	- facebook.js
+ *-------------------------------------------------------------------------*/
+
+/**
+ * Application object definition.
+ *
+ * @author Mehdi Lefebvre mlefebvre@simnetsa.ch
+ * @since
+ * @version 0.01
+ * @compagny Simnet S.A. (http://www.simnetsa.ch)
+ * @copyright Simnet S.A.
  */
-// APP
 var app = {
-    bodyLoad:function(){
-        document.addEventListener("deviceready", app.deviceReady, false);
-    },
-    deviceReady:function(){
-        app.init();
-    },
+    /**
+     * Initialize the application according to our needs.
+     *
+     * @return void
+     */
     init:function(){
         // First lets check to see if we have a user or not
-        if(!localStorage.getItem(facebook_token)){
-            $("#fbAction").attr('data-theme', 'b');
-            $("#status").hide();
+        if( !localStorage.getItem( facebook_token ) ) {
+            Simnet.logger.debug( "User not logged in to facebook" );
+            SimApp.fireEvent( SimApp.events.FB_USER_NOT_CONNECTED );
 
-            $("#fbAction").click(function(){
+            /*$( "#fbAction" ).attr( "data-theme", "a" ).click( function(){
                 Facebook.init();
-            });
+            } ); */
         }
         else {
-            Simnet.Logger.debug("showing loged in");
-            $("#loginArea").hide();
-            $("#status").show();
-            $("#statusBTN").click(function(){
-                createPost();
-            });
+            Simnet.Logger.debug("User already logged in");
+            SimApp.fireEvent( SimApp.events.FB_USER_AUTHENTICATED );
         }
+        SimApp.init();
     },
+
+    /**
+     * Silent function for now.
+     *
+     * @return void
+     */
     done:function(){
 
     },
-    createPost:function(){
 
-
-        // Define our message!
-        var msg = $("#statusTXT").val();
-
-        // Define the part of the Graph you want to use.
-        var _fbType = 'feed';
-
-        // This example will post to a users wall with an image, link, description, text, caption and name.
-        // You can change
-        var params = {};
-        params['message'] = msg;
-        params['name'] = 'A Facebook App for Phonegap';
-        params['description'] = "I just made a Facebook app with Phonegap using this sweet tutorial from Drew Dahlman";
-        params['_link'] = "http://www.drewdahlman.com";
-        params['picture'] = "http://compixels.com/wp-content/uploads/2011/04/Facebook-Logo.jpg";
-        params['caption'] = 'Hello World';
-
+    /**
+     * Post a message on a medias
+     */
+    postMessage:function( message, options ){
+        options = options || {};
+        message = message || "No message to post";
+        var _fbType = 'feed'; // kind of the feed to fetch
         // When you're ready send you request off to be processed!
-        Facebook.post(_fbType,params);
+        Facebook.post( _fbType, options );
     }
 },
+
+onDeviceReady = function() {
+    Simnet.Logger.activate();
+    Simnet.Logger.debug( "Device is now ready, proceed to application initialisation");
+    $.support.cors = true;
+    app.init();
+};
+
+ // arm the main handler ...
+( function( $ ) {
+    document.addEventListener("deviceready", onDeviceReady, false);
+} )( jQuery );
+
+
+/*
+// fake post  for testing purpose only ...
 createPost = function(){
     Simnet.Logger.debug( "Creaing a fake post ...");
     // Define our message!
@@ -74,65 +96,5 @@ createPost = function(){
 
     // When you're ready send you request off to be processed!
     Facebook.post(_fbType,params);
-},
-onDeviceReady = function() {
-    Simnet.Logger.activate();
-    Simnet.Logger.debug( "Device is now ready, proceed to application initialisation");
-    $.support.cors = true;
-    $.mobile.showPageLoadingMsg();
-    $( '#notificationContainer' ).toast();
-
-    //SimFacebook.init();
-
-    $( "#loginButton" ).click( function( mouseEvent ) {
-        // test simapp & social functions
-        SimFacebook.postMessage( "This is a simple test" );
-        return false;
-    } );
-
-    $( "#postButtonTest" ).click( function( mouseEvent ) {
-        createPost();
-    } );
-
-    $( "#fbAction" ).click( function( mouseEvent ) {
-        SimFacebook.postMessage( "This is a simple test from the application ..." );
-        return false;
-    } );
-
-    app.bodyLoad();
-};
-
-( function( $ ) {
-    document.addEventListener("deviceready", onDeviceReady, false);
-} )( jQuery );
-
-if( false ) {
-    window.fbAsyncInit = function() {
-        // param to initialize the fb api
-        FB.init( {
-            appId      : SimFacebook.API_ID,
-            channelUrl : SimFacebook.CHAN_URL,
-            status     : true,
-            cookie     : true,
-            xfbml      : false
-        } );
-
-        SimFacebook.fetchLoginStatus();
-        $( document ).trigger( SimApp.events.FB_APPLICATION_INITIALIZING );
-
-    }; /* fbAsyncInit */
-
-    // load the facebook api and run it.
-    ( function( doc, dbg ){
-        var js = doc.createElement( 'script' ),
-        id = 'facebook-jssdk',
-        ref = doc.getElementsByTagName( 'script' )[0];
-        if( doc.getElementById( id ) ) {
-            return;
-        }
-        js.id = id;
-        js.async = true;
-        js.src = "//connect.facebook.net/en_US/all" + ( dbg ? "/debug" : "" ) + ".js";
-        ref.parentNode.insertBefore( js, ref );
-    }( document, true ) );
 }
+*/
