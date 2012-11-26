@@ -17,27 +17,17 @@
  * @compagny Simnet S.A. (http://www.simnetsa.ch)
  * @copyright Simnet S.A.
  */
-var app = {
+var Application = {
+
     /**
      * Initialize the application according to our needs.
      *
      * @return void
      */
     init:function(){
-        // First lets check to see if we have a user or not
-        if( !localStorage.getItem( facebook_token ) ) {
-            Simnet.logger.debug( "User not logged in to facebook" );
-            SimApp.fireEvent( SimApp.events.FB_USER_NOT_CONNECTED );
-
-            /*$( "#fbAction" ).attr( "data-theme", "a" ).click( function(){
-                Facebook.init();
-            } ); */
-        }
-        else {
-            Simnet.Logger.debug("User already logged in");
-            SimApp.fireEvent( SimApp.events.FB_USER_AUTHENTICATED );
-        }
         SimApp.init();
+        Facebook.init();
+        SimApp.fireEvent( SimApp.events.APPLICATION_INITIALILIZED );
     },
 
     /**
@@ -50,14 +40,36 @@ var app = {
     },
 
     /**
-     * Post a message on a medias
+     * Post a message on Facebook
+     * 
+     * @param string message : the body of the message
+     * @param object options : Options of the message
+     * @return void
      */
-    postMessage:function( message, options ){
-        options = options || {};
-        message = message || "No message to post";
-        var _fbType = 'feed'; // kind of the feed to fetch
-        // When you're ready send you request off to be processed!
-        Facebook.post( _fbType, options );
+    postFacebookMessage:function( message, options ) {
+        SimApp.postMessage( message, option, SimApp.postType.FACEBOOK );
+    },
+    
+    /**
+     * Post a message on twitter
+     * 
+     * @param string message : the body of the message
+     * @param object options : Options of the message
+     * @return void
+     */
+    postTwitterMessage : function( message, options ) {
+    	SimApp.postMessage( message, options, SimApp.postType.TWITTER );
+    },
+    
+    /**
+     * Post a message on linkedin
+     * 
+     * @param string message : the body of the message
+     * @param object options : Options of the message
+     * @return void
+     */
+    postLinkedinMessage : function( message, options ) {
+    	SimApp.postMessage( message, options, SimApp.postType.LINKEDIN );
     }
 },
 
@@ -65,7 +77,7 @@ onDeviceReady = function() {
     Simnet.Logger.activate();
     Simnet.Logger.debug( "Device is now ready, proceed to application initialisation");
     $.support.cors = true;
-    app.init();
+    Application.init();
 };
 
  // arm the main handler ...
