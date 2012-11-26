@@ -63,22 +63,24 @@ var Facebook = {
      * @return void
      */
     init : function() {
+    	Simnet.Logger.debug( "Facebook application intializing" );
     	// First lets check to see if we have a user or not
         if( !localStorage.getItem( facebook_token ) ) {
-            Simnet.logger.debug( "User not logged in to facebook" );
+            Simnet.Logger.debug( "User not logged in to facebook" );
             SimApp.fireEvent( SimApp.events.FB_USER_NOT_CONNECTED );
             Facebook.status.connected = false;
             
             // bind events ...
             $( document ).bind( SimApp.events.FB_HANDSHAKE_COMPLETED, function() {
             	window.plugins.childBrowser.close();
-            } )
+            } );
         }
         else {
             Simnet.Logger.debug("User already logged in");
             SimApp.fireEvent( SimApp.events.FB_USER_AUTHENTICATED );
             Facebook.status.connected = true;
         }
+        Simnet.Logger.debug( "Facebook application intialized" );
     },
 
     /**

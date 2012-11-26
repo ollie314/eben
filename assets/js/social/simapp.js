@@ -145,10 +145,12 @@ var SimApp = {
      * @return void
      */
     init : function() {
+    	Simnet.Logger.debug( "SimApp application intializing" );
     	// intialize the notification container
         SimApp.notificationContainer = $( SimApp.notificationSelector ).toast();
         // mark object as initialized
         SimApp.initialized = true;
+        Simnet.Logger.debug( "SimApp application intialized" );
     },
 
     /**
