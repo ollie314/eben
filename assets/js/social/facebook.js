@@ -151,9 +151,9 @@ var Facebook = {
                     localStorage.setItem( facebook_token, token );
                     Simnet.Logger.debug( "Token persisted");
                     SimApp.fireEvent( SimApp.events.FB_AUTHENTICATION_SUCCESS );
-                    $( document ).bind( SimApp.events.FB_HANDSHAKE_COMPLETED, function() {
+                    setTimeout( function( ) {
                     	Facebook.post( feedType, message );
-                    } );
+                    }, 500 );
                     Simnet.Logger.debug( "Ajax call completed, authentication successfully completed");
                 },
                 error: function(error) {
