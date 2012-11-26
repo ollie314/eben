@@ -14,44 +14,14 @@
 	<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery.js"></script>
 	<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery_mobile.js"></script>
 	<script type="text/javascript" charset="utf-8" src="./assets/js/core/jquery.mobile.toast.js"></script>
-	<script type="text/javascript" charset="utf-8" src="./assets/js/social/simapp.js"></script>
-	<script type="text/javascript" charset="utf-8" src="./assets/js/social/simplefb.js"></script>
+	<!--script type="text/javascript" charset="utf-8" src="./assets/js/social/simapp.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./assets/js/social/simplefb.js"></script-->
 	<script type="text/javascript" charset="utf-8" src="./assets/js/utils/date.js"></script>
 	<script type="text/javascript" charset="utf-8" src="./assets/js/utils/simnet.logger.js"></script>
 	<script type="text/javascript" charset="utf-8" src="./assets/js/application.js"></script>
 </head>
 <body>
 <div id="fb-root"></div>
-<script>
-window.fbAsyncInit = function() {
-  // param to initialize the fb api
-  FB.init( {
-    appId      : SimFacebook.API_ID,
-    channelUrl : SimFacebook.CHAN_URL,
-    status     : true,
-    cookie     : true,
-    xfbml      : false
-  } );
-
-  SimFacebook.fetchLoginStatus();
-  $( document ).trigger( SimApp.events.FB_APPLICATION_INITIALIZING );
-
-}; /* fbAsyncInit */
-
-// load the facebook api and run it.
-( function( doc, dbg ){
-  var js = doc.createElement( 'script' ),
-    id = 'facebook-jssdk',
-    ref = doc.getElementsByTagName( 'script' )[0];
-  if( doc.getElementById( id ) ) {
-    return;
-  }
-  js.id = id;
-  js.async = true;
-  js.src = "//connect.facebook.net/en_US/all" + ( dbg ? "/debug" : "" ) + ".js";
-  ref.parentNode.insertBefore( js, ref );
- }( document, SimApp.DEBUG_MODE ) );
-</script>
 	<div data-role="page" id="one">
 		<div id="pageHeader" data-role="header">
 			<h1>Multi-page</h1>
@@ -117,7 +87,20 @@ window.fbAsyncInit = function() {
 		</div>
 		<div class="content-primary">
 			<ul data-role="listview" class="ui-listview">
-
+                            <li data-corners="false" data-shadow="false"
+                                    data-iconshadow="true"
+                                    data-wrapperels="div"
+                                    data-icon="arrow-r"
+                                    data-iconpos="right"
+                                    data-theme="c"
+                                    class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-first-child ui-btn-up-c">
+                                    <div class="ui-btn-inner ui-li">
+                                            <div class="ui-btn-text">
+                                                    <a href="#" id="statusBTN" class="ui-link-inherit">Post</a>
+                                            </div>
+                                            <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span>
+                                    </div>
+                            </li>
 			</ul>
 		</div>
 		<div data-role="footer" data-theme="d" data-position="fixed" data-fullscreen="true">
