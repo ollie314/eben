@@ -99,7 +99,7 @@ createPost = function(){
     // This example will post to a users wall with an image, link, description, text, caption and name.
     // You can change
     var params = {};
-    params['message'] = msg;
+    params['message'] = "This is a test !!!";
     params['name'] = 'Another day of labour ... ;)';
     params['description'] = "Retrying to do some things";
     params['_link'] = "http://www.simnetsa.ch";

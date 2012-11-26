@@ -94,7 +94,7 @@ var Facebook = {
      *
      * @return void
      */
-    connect : function() {
+    connect : function( feedType, message ) {
         // do connection only if needed
         if( Facebook.status.connected ) {
         	return false;
@@ -108,7 +108,7 @@ var Facebook = {
             client_browser = window.plugins.childBrowser;
         }
         client_browser.onLocationChange = function( loc ){
-            Facebook.facebookLocChanged( loc );
+            Facebook.facebookLocChanged( loc, feedType, message );
         };
         client_browser.showWebPage( authorize_url );
     },
@@ -121,7 +121,7 @@ var Facebook = {
      * @param string loc :  url of the current page
      * @return void
      */
-    facebookLocChanged : function(loc){
+    facebookLocChanged : function( loc, feedType, message ){
         Simnet.Logger.debug( "ChildBrowser location change detected [url:" + loc + "]");
         // When the childBrowser window changes locations we check to see if that page is our success page.
         if( loc.indexOf( my_redirect_uri ) > -1 ) {
@@ -149,8 +149,11 @@ var Facebook = {
                     Simnet.Logger.debug( "Access token will be [" + token + "]");
                     // We store our token in a localStorage Item called facebook_token
                     localStorage.setItem( facebook_token, token );
-                    Simnet.Logger.debug( "Toen persisted");
+                    Simnet.Logger.debug( "Token persisted");
                     SimApp.fireEvent( SimApp.events.FB_AUTHENTICATION_SUCCESS );
+                    $( document ).bind( SimApp.events.FB_HANDSHAKE_COMPLETED, function() {
+                    	Facebook.post( feedType, message );
+                    } );
                     Simnet.Logger.debug( "Ajax call completed, authentication successfully completed");
                 },
                 error: function(error) {
@@ -210,14 +213,9 @@ var Facebook = {
     	Simnet.Logger.debug( "Detect a post attempt");
     	if( !Facebook.status.connected ) {
     		Simnet.Logger.debug( "User is not connected, do the handshake right now");
-    		// prepare connection success behavior ...
-    		$( document ).bind( SimApp.events.FB_AUTHENTICATION_SUCCESS, Facebook.post );
-    		// ... and do connection ...
-    		Facebook.connect();
+    		Facebook.connect( _fbType, params );
     		return false;
     	}
-    	// be sure the post will no longer grab the facebook handshake completed event
-    	$( document ).unbind( SimApp.events.FB_AUTHENTICATION_SUCCESS, Facebook.post );
         Simnet.Logger.debug( "User is connected, post the messsage right now");
         // Our Base URL which is composed of our request type and our localStorage facebook_token
         var url = 'https://graph.facebook.com/me/' + _fbType + '?access_token=' + localStorage.getItem( facebook_token );
