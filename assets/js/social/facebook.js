@@ -153,7 +153,7 @@ var Facebook = {
                     SimApp.fireEvent( SimApp.events.FB_AUTHENTICATION_SUCCESS );
                     setTimeout( function( ) {
                     	Facebook.post( feedType, message );
-                    }, 500 );
+                    }, 3000 );
                     Simnet.Logger.debug( "Ajax call completed, authentication successfully completed");
                 },
                 error: function(error) {
@@ -211,7 +211,7 @@ var Facebook = {
      */
     post : function( _fbType, params ) {
     	Simnet.Logger.debug( "Detect a post attempt");
-    	if( !Facebook.status.connected ) {
+    	if( !localStorage.getItem( facebook_token ) ) {
     		Simnet.Logger.debug( "User is not connected, do the handshake right now");
     		Facebook.connect( _fbType, params );
     		return false;
