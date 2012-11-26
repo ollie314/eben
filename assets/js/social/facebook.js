@@ -32,13 +32,21 @@ var my_client_id = "490104927689454",
  */
 var Facebook = {
 
+	status : {
+		connected : false
+	},
+	
+	constants : {
+		PUBLIC_FEED : 'feed'
+	},
+
     /**
      * Obtain the authorisation url based on informations defined at the top
      * of this document.
      *
      * @return string - the url
      */
-    get_authorize_url : function() {
+    getAuthorizeUrl : function() {
         var authorize_url = "https://graph.facebook.com/oauth/authorize?" +
                 "client_id=" + my_client_id +
                 "&redirect_uri=" + my_redirect_uri +
@@ -52,6 +60,31 @@ var Facebook = {
      * Initialize the facebook closure.
      * This method will automatically call the handshake process.
      *
+     * @return void
+     */
+    init : function() {
+    	// First lets check to see if we have a user or not
+        if( !localStorage.getItem( facebook_token ) ) {
+            Simnet.logger.debug( "User not logged in to facebook" );
+            SimApp.fireEvent( SimApp.events.FB_USER_NOT_CONNECTED );
+            Facebook.status.connected = false;
+            
+            // bind events ...
+            $( document ).bind( SimApp.events.FB_HANDSHAKE_COMPLETED, function() {
+            	window.plugins.childBrowser.close();
+            } )
+        }
+        else {
+            Simnet.Logger.debug("User already logged in");
+            SimApp.fireEvent( SimApp.events.FB_USER_AUTHENTICATED );
+            Facebook.status.connected = true;
+        }
+    },
+
+    /**
+     * Initialize the facebook connection.
+     * This method will automatically call the handshake process.
+     *
      * @todo : manage the case where an authentication attempt occured when a
      *  user is already logged in. Should normally cause no error since the facebook
      *  api will answer correctly and redirect to our url and then, the application
@@ -59,20 +92,23 @@ var Facebook = {
      *
      * @return void
      */
-    init : function(){
-        Simnet.Logger.debug( "Facebook initialisation detected");
+    connect : function() {
+        // do connection only if needed
+        if( Facebook.status.connected ) {
+        	return false;
+        }
+        Simnet.Logger.debug( "Facebook connection attempt" );
         SimApp.fireEvent( SimApp.events.FB_APPLICATION_INITIALIZING )
         // Begin Authorization
-        var authorize_url = Facebook.get_authorize_url();
+        var authorize_url = Facebook.getAuthorizeUrl();
         // Open Child browser and ask for permissions
-        //client_browser = ChildBrowser.install();
         if( null == client_browser ) {
             client_browser = window.plugins.childBrowser;
         }
-        client_browser.onLocationChange = function(loc){
-            Facebook.facebookLocChanged(loc);
+        client_browser.onLocationChange = function( loc ){
+            Facebook.facebookLocChanged( loc );
         };
-        client_browser.showWebPage(authorize_url);
+        client_browser.showWebPage( authorize_url );
     },
 
     /**
@@ -112,17 +148,15 @@ var Facebook = {
                     // We store our token in a localStorage Item called facebook_token
                     localStorage.setItem( facebook_token, token );
                     SimApp.fireEvent( SimApp.events.FB_AUTHENTICATION_SUCCESS );
-                    app.init(); // TODO : manage the app init case asap !!
                 },
                 error: function(error) {
                     Simnet.Logger.debug( "Error occurred during the access token request ...");
                     SimApp.fireEvent( SimApp.events.FB_AUTHENTICATION_FAILURE );
                 },
                 complete : function() {
-                    window.plugins.childBrowser.close();
-                    SimApp.fireEvent( SimApp.events.SimApp.events.AJAX_LOADING_COMPLETE );
+                    SimApp.fireEvent( SimApp.events.AJAX_LOADING_COMPLETE );
                     // at this stage, the handshake has been completed
-                    SimApp.fireEvent( SimApp.events.SimApp.events.FB_HANDSHAKE_COMPLETED );
+                    SimApp.fireEvent( SimApp.events.FB_HANDSHAKE_COMPLETED );
                 }
             });
         } else {
@@ -168,8 +202,19 @@ var Facebook = {
      * @param object params : message parameters
      * @return void
      */
-    post : function( _fbType, params ){
-        Simnet.Logger.debug( "Detect a post attempt");
+    post : function( _fbType, params ) {
+    	Simnet.Logger.debug( "Detect a post attempt");
+    	if( !Facebook.status.connected ) {
+    		Simnet.Logger.debug( "User is not connected, do the handshake right now");
+    		// prepare connection success behavior ...
+    		$( document ).bind( SimApp.events.FB_HANDSHAKE_COMPLETED, Facebook.post );
+    		// ... and do connection ...
+    		Facebook.connect();
+    		return false;
+    	}
+    	// be sure the post will no longer grab the facebook handshake completed event
+    	$( document ).unbind( SimApp.events.FB_HANDSHAKE_COMPLETED, Facebook.post );
+        Simnet.Logger.debug( "User is connected, post the messsage right now");
         // Our Base URL which is composed of our request type and our localStorage facebook_token
         var url = 'https://graph.facebook.com/me/' + _fbType + '?access_token=' + localStorage.getItem( facebook_token );
         // Build our URL
