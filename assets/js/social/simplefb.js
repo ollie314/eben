@@ -57,7 +57,7 @@ var SimFacebook = {
             SimFacebook.status.authorized = false;
         } );
 
-        $( document ).bind( SimApp.event.SimApp.events.FB_HANDSAKE_COMPLETE, function() {
+        $( document ).bind( SimApp.events.FB_HANDSAKE_COMPLETE, function() {
             Simnet.Logger.trace( "Event received : [" + SimApp.events.FB_HANDSAKE_COMPLETE + "]" );
             window.plugins.childBrowser.close();
         } );
