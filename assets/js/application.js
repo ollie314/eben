@@ -94,6 +94,8 @@ onDeviceReady = function() {
         SimFacebook.postMessage( "This is a simple test from the application ..." );
         return false;
     } );
+
+    app.bodyLoad();
 };
 
 ( function( $ ) {
